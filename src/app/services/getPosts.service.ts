@@ -14,8 +14,6 @@ const getPosts = async (domain: string, token: string) => {
     const data = await response.json()
     const posts = data // El token JWT
 
-    console.log(posts)
-
     return posts
   } else {
     console.error('Error al iniciar sesión')

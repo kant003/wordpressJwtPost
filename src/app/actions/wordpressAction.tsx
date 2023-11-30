@@ -74,7 +74,6 @@ export default async function wordpressAction(
 
   // esperar 2 segundos usando promesas
   const mediaId = await uploadMedia(domain, token.jwt_token, formData)
-  console.log('mediaId:', mediaId)
 
   const firstPost = await createPosts(domain, token.jwt_token, {
     title: titleES,

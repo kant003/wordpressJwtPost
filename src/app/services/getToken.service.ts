@@ -20,8 +20,6 @@ const getToken = async (domain: string, username: string, password: string) => {
     // Luego de obtener el token, puedes realizar otras operaciones
     // Por ejemplo, obtener datos del usuario
     //getUserData(token);
-    console.log(token)
-
     return token
   } else {
     console.error('Error al iniciar sesión')

@@ -48,8 +48,6 @@ const createPosts = async (domain: string, token: string, data: Data): Promise<b
     const data = await response.json()
     const posts = data // El token JWT
 
-    console.log('post:', posts)
-
     return true
   } else {
     console.error('Error al crear post')

@@ -3,7 +3,6 @@
 const uploadMedia = async (domain: string, token: string, formData: FormData) => {
   const URL = domain + '/wp-json/wp/v2/media'
   const file = formData.get('file') as File
-  console.log('subiendo:', file)
   if (file.size <= 0) return null
 
   formData.append('file', file)
@@ -21,12 +20,9 @@ const uploadMedia = async (domain: string, token: string, formData: FormData) =>
     },
     body: formData
   })
-  console.log('inic')
   if (response.ok) {
     const data = await response.json()
     const posts = data // El token JWT
-
-    console.log(posts)
 
     return data.id
   } else {

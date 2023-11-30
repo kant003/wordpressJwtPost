@@ -15,8 +15,6 @@ const validateToken = async (domain: string, token: string) => {
     const data = await response.json()
     const token = data // El token JWT
 
-    console.log(token)
-
     return token
   } else {
     console.error('Error al iniciar sesión')
