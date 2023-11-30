@@ -24,17 +24,17 @@ function Home() {
   const [tab, setTab] = useState(1)
 
   useEffect(() => {
-    if (state.errors?.auth) {
-      toast.error(state.message)
+    if (state?.errors?.auth) {
+      toast.error(state?.message)
     }
-    if (state.message === 'Entrada creada correctamente') {
-      toast.success(state.message)
+    if (state?.message === 'Entrada creada correctamente') {
+      toast.success(state?.message)
       setShowConfetti(true)
       setTimeout(() => {
         setShowConfetti(false)
       }, 3000)
     }
-  }, [state.message, state.errors?.auth])
+  }, [state?.message, state?.errors?.auth])
 
   return (
     <div className="container mx-auto">
@@ -42,7 +42,7 @@ function Home() {
       {showConfetti && <Confetti width={width} height={height} />}
       <h1 className="text-3xl p-3 text-center text-yellow-300">Inserción de contenido</h1>
       <div id="customer-error" aria-live="polite" aria-atomic="true">
-        {state.message}
+        {state?.message}
       </div>
       <form action={dispatch} className="flex flex-col gap-3">
         <div className="flex flex-col lg:flex-row grow gap-3 justify-between">

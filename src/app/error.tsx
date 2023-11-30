@@ -11,7 +11,7 @@ export default function Error({error, reset}: {error: Error; reset: () => void})
   return (
     <div>
       <h2>Algo malo ha pasado:!</h2>
-      <p>{error.message}</p>
+      <p>{error?.message}</p>
       <button
         className="btn btn-outline"
         onClick={
