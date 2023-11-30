@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "extends": [
+    // "plugin:testing-library/recommended",
+    "next/core-web-vitals",
+    // "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": "warn"
+  },
+  "plugins": ["jest", "testing-library", "prettier"],
+  "overrides": [
+    // Only uses Testing Library lint rules in test files
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)",
+        "**/__tests__/**/*.js",
+        "**/*.test.js"
+      ],
+      "extends": ["plugin:testing-library/react"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}

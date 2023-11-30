@@ -1,0 +1,68 @@
+@tailwind base;
+@layer base {
+  input,
+  textarea {
+    @apply placeholder-gray-600;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* --primary-color: #F4B860;
+  --background-color: #1C2122;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220; 
+  --background-end-rgb: 255, 255, 255;*/
+  --background-color: #1c2122;
+  background-color: var(--background-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0; */
+    --background-color: #1c2122;
+    background-color: var(--background-color);
+  }
+}
+
+body {
+  background-color: var(--background-color);
+  color: rgb(var(--foreground-rgb));
+  /*background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));*/
+}
+
+/*h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+} */
+
+/*ul {
+  list-style-type: circle;
+  list-style-position: inside;
+  padding: 0;
+  margin: 0;
+  color: red;
+} 
+li {
+  margin-bottom: 0.5rem;
+}*/
+
+
+.monaco-editor .margin {
+  width: 15px !important; /* Ajusta el ancho del gutter según lo desees */
+}
+
+.monaco-editor .margin .mtk1 {
+  padding-right: 0px !important; /* Ajusta el padding (espacio) a la derecha del número de línea */
+}
