@@ -7,7 +7,7 @@ type Data = {
   content: string
   language: Language
   category: Category
-  imageId: number
+  imageId: number | null
 }
 
 enum Asociations {
