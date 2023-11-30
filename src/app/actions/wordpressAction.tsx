@@ -73,7 +73,16 @@ export default async function wordpressAction(
   }
 
   // esperar 2 segundos usando promesas
-  const mediaId = await uploadMedia(domain, token.jwt_token, formData)
+  let mediaId
+  try {
+    mediaId = await uploadMedia(domain, token.jwt_token, formData)
+  } catch (errores) {
+    console.log(errores)
+    return {
+      errors: {file: ['Error al subir la imagen.']},
+      message: 'Error al subir la imagen.'
+    }
+  }
 
   const firstPost = await createPosts(domain, token.jwt_token, {
     title: titleES,
