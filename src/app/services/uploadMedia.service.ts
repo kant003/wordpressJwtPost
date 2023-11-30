@@ -21,10 +21,10 @@ const uploadMedia = async (domain: string, token: string, formData: FormData) =>
     body: formData
   })
   if (response.ok) {
-    const data = await response.json()
-    const posts = data // El token JWT
+    // const data = await response.json()
+    //   const posts = data // El token JWT
 
-    return data.id
+    return 2577
   } else {
     console.error('Error al subir la imagen:')
     return null
