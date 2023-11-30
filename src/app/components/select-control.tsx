@@ -11,12 +11,12 @@ interface Props {
 
 function SelectControl({title, name, defaultValue, autoFocus, options, onChange}: Props) {
   return (
-    <div className="form-control flex flex-row">
+    <div className="form-control flex flex-col">
       <label className="label" htmlFor={name}>
-        <span className="label-text">{title}</span>
+        <span className="label-text block md:text-right mb-1 md:mb-0 ">{title}</span>
       </label>
       <select
-        className="select select-bordered"
+        className="select select-bordered w-fit"
         name={name}
         id={name}
         defaultValue={defaultValue}

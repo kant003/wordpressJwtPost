@@ -5,23 +5,36 @@ interface Props {
   value?: string
   placeholder: string
   errors?: string[]
-  type?: 'text' | 'password'
+  type?: 'text' | 'password' | 'textarea'
   className?: string
 }
 
 function InputControl({title, name, value, placeholder, errors, type = 'text', className}: Props) {
   return (
-    <label className={`flex flex-row w-full ${className}`}>
+    <label className={`flex flex-col ${className}`}>
       <div className="label">
-        <span className="label-text">{title}</span>
+        <span className="label-text block md:text-right mb-1 md:mb-0 ">{title}</span>
       </div>
-      <input
-        name={name}
-        defaultValue={value}
-        type={type}
-        placeholder={placeholder}
-        className={`${errors ? 'input-error' : ''} input input-sm input-bordered w-full`}
-      />
+      {type !== 'textarea' && (
+        <input
+          name={name}
+          defaultValue={value}
+          type={type}
+          placeholder={placeholder}
+          className={`${errors ? 'input-error' : ''} input grow input-sm input-bordered`}
+        />
+      )}
+
+      {type === 'textarea' && (
+        <textarea
+          name={name}
+          defaultValue={value}
+          placeholder={placeholder}
+          className={`${
+            errors ? 'textarea-error' : ''
+          } textarea textarea-sm textarea-bordered h-24 w-full`}
+        />
+      )}
       <div className="label">
         <span className="label-text-alt">
           {errors &&

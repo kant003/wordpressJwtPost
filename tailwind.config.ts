@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      content: {
+        flagES: 'url("/icons/es.svg")',
+        flagGL: 'url("/icons/es-ga.svg")',
+        flagEN: 'url("/icons/gb.svg")'
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'

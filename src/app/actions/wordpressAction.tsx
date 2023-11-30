@@ -6,7 +6,8 @@ import uploadMedia from '../services/uploadMedia.service'
 
 const CreateCourseSchema = z.object({
   username: z.string().min(1).max(100),
-  contentES: z.string().min(1).max(7000)
+  contentES: z.string().min(1).max(7000),
+  titleGL: z.string().min(1).max(7000)
 })
 
 export type State = {
@@ -14,10 +15,14 @@ export type State = {
     domain?: string[]
     username?: string[]
     password?: string[]
+    titleES?: string[]
     contentES?: string[]
+    titleGL?: string[]
     contentGL?: string[]
+    titleEN?: string[]
     contentEN?: string[]
     file?: string[]
+    auth?: string[]
   }
   message?: string | null
 }
@@ -44,8 +49,11 @@ export default async function wordpressAction(
     domain,
     username,
     password,
+    titleES,
     contentES,
+    titleGL,
     contentGL,
+    titleEN,
     contentEN
   })
 
@@ -59,6 +67,7 @@ export default async function wordpressAction(
   const token = await getToken(domain, username, password)
   if (!token) {
     return {
+      errors: {auth: ['Autenticación incorrecta.']},
       message: 'Autenticación incorrecta.'
     }
   }
@@ -94,6 +103,6 @@ export default async function wordpressAction(
   }
 
   return {
-    message: 'Todo OK.'
+    message: 'Entrada creada correctamente'
   }
 }
