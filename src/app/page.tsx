@@ -111,7 +111,7 @@ function Home() {
             errors={state.errors?.file}
           />
         </fieldset>
-        <ConfettiButton />
+        {/* <ConfettiButton /> */}
         <SubmitButton className="btn btn-outline btn-primary self-center">Publicar</SubmitButton>
       </form>
     </div>

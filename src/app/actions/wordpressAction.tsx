@@ -74,22 +74,24 @@ export default async function wordpressAction(
     language: 'es',
     imageId: mediaId
   })
-  /*
+
   if (category !== 'annualAccounts') {
     const secondPost = await createPosts(domain, token.jwt_token, {
       title: titleGL,
       content: contentGL,
       category: category,
-      language: 'gl'
+      language: 'gl',
+      imageId: mediaId
     })
 
     const thirdPost = await createPosts(domain, token.jwt_token, {
       title: titleEN,
       content: contentEN,
       category: category,
-      language: 'en'
+      language: 'en',
+      imageId: mediaId
     })
-  } */
+  }
 
   return {
     message: 'Todo OK.'
