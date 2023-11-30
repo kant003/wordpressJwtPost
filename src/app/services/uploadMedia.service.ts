@@ -15,16 +15,17 @@ const uploadMedia = async (domain: string, token: string, formData: FormData) =>
   const response = await fetch(URL, {
     method: 'POST',
     headers: {
+      'Content-Type': 'multipart/form-data',
       //'Content-Type': 'application/json',
       Authorization: 'Bearer ' + token
     },
     body: formData
   })
   if (response.ok) {
-    // const data = await response.json()
-    //   const posts = data // El token JWT
+    const data = await response.json()
+    const posts = data // El token JWT
 
-    return 2577
+    return data.id
   } else {
     console.error('Error al subir la imagen:')
     return null
