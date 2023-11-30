@@ -5,13 +5,13 @@ import {useEffect} from 'react'
 export default function Error({error, reset}: {error: Error; reset: () => void}) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error)
+    console.error('error')
   }, [error])
 
   return (
     <div>
       <h2>Algo malo ha pasado:!</h2>
-      <p>{error?.message}</p>
+      {/* <p>{error?.message}</p> */}
       <button
         className="btn btn-outline"
         onClick={
