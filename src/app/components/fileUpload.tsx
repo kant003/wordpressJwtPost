@@ -12,8 +12,13 @@ interface Props {
 const FileUploadForm = ({onDrop, removeFile, files}: Props) => {
   const dropzoneOptions: DropzoneOptions = {
     onDrop,
-    accept: 'image/*', // Puedes cambiar el tipo de archivo permitido aquí
-    multiple: true
+    accept: {
+      'image/png': ['.png'],
+      'image/jpeg': ['.jpg', '.jpeg'],
+      'image/gif': ['.gif'],
+      'image/svg+xml': ['.svg'],
+      'application/pdf': ['.pdf']
+    }
   }
 
   const {getRootProps, getInputProps} = useDropzone(dropzoneOptions)
