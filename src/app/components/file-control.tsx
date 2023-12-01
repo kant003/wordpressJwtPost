@@ -1,5 +1,6 @@
 interface Props {
   title: string
+  id?: string
   name: string
   placeholder: string
   errors?: string[]
@@ -8,7 +9,7 @@ interface Props {
   accept?: string
 }
 
-function FileControl({title, name, placeholder, errors, className, accept}: Props) {
+function FileControl({title, id, name, placeholder, errors, className, accept}: Props) {
   return (
     <label className={`w-full ${className}`}>
       <div className="label">
@@ -16,6 +17,7 @@ function FileControl({title, name, placeholder, errors, className, accept}: Prop
       </div>
       <input
         type="file"
+        id={id}
         accept={accept}
         className="file-input file-input-sm file-input-bordered w-full"
         name={name}

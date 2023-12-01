@@ -45,6 +45,26 @@ export default async function wordpressAction(
   const contentEN = formData.get('contentEN') as string
   const file = formData.get('file') as File
 
+  // console.log('formData', formData)
+
+  const inputObject = formData.entries() as unknown as [string, any][]
+  const ficheros = []
+
+  for (const [clave, valor] of inputObject) {
+    //if (valor instanceof File) {
+    // console.log(`${clave}: ${valor}`)
+    // console.log(typeof valor)
+
+    if (typeof valor === 'object') {
+      //console.log('es un objeto')
+      const f = valor as File
+      //console.log(f.name)
+      ficheros.push(f)
+    }
+    //}
+  }
+  //console.log('ficheros', ficheros)
+
   const validatedFields = CreateCourseSchema.safeParse({
     domain,
     username,
@@ -73,25 +93,39 @@ export default async function wordpressAction(
   }
 
   // esperar 2 segundos usando promesas
-  let mediaId
-  try {
-    mediaId = await uploadMedia(domain, token.jwt_token, formData)
-  } catch (errores) {
-    console.log(errores)
-    return {
-      errors: {file: ['Error al subir la imagen.']},
-      message: 'Error al subir la imagen.'
+  //const mediaId = await uploadMedia(domain, token.jwt_token, formData).id
+  let mediaId: number | null = null
+  let content = ''
+  for (let i = 0; i < ficheros.length; i++) {
+    //ficheros.forEach(async (f, i) => {
+    const f = ficheros[i]
+    if (f.type.startsWith('image') && mediaId === null) {
+      const media = await uploadMedia(domain, token.jwt_token, new FormData(), f)
+      mediaId = media.id
+      //console.log('ponemso imagen portada:', media.id)
+    } else {
+      const media = await uploadMedia(domain, token.jwt_token, new FormData(), f)
+      if (f.type === 'application/pdf') {
+        content += `<br> <div style="width:100%"> <iframe src="${media.source_url}" width="100%" height="600px"></iframe> </div>`
+        content += `<br> <a href="${media.source_url}" target="_blank">Descargar PDF</a>`
+        //console.log('ponemos pdf:', media.source_url)
+      }
+      if (f.type.startsWith('image')) {
+        content += `<br> <img src="${media.source_url}" alt="${f.name}" />`
+        //console.log('ponemos imagen:', media.source_url)
+      }
     }
   }
 
+  console.log('c', content)
   const firstPost = await createPosts(domain, token.jwt_token, {
     title: titleES,
-    content: contentES,
+    content: contentES + content,
     category: category,
     language: 'es',
     imageId: mediaId
   })
-
+  /*
   if (category !== 'annualAccounts') {
     const secondPost = await createPosts(domain, token.jwt_token, {
       title: titleGL,
@@ -109,7 +143,7 @@ export default async function wordpressAction(
       imageId: mediaId
     })
   }
-
+*/
   return {
     message: 'Entrada creada correctamente'
   }
