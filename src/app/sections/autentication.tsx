@@ -22,14 +22,14 @@ function Autentication({state}: Props) {
           errors={state.errors?.domain}
         />
         <InputControl
-          value="angel"
+          value=""
           title="Usuario"
           name="username"
           placeholder="Inserte su nombre de usuario"
           errors={state.errors?.username}
         />
         <InputControl
-          value="#eZuMc70_gs456gds5"
+          value=""
           type="password"
           title="Password"
           name="password"
