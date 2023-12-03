@@ -16,7 +16,7 @@ const uploadMedia = async (domain: string, token: string, formData: FormData, fi
   const response = await fetch(URL, {
     method: 'POST',
     headers: {
-      //'Content-Type': 'multipart/form-data',
+      'Content-Type': 'multipart/form-data',
       //'Content-Type': 'application/json',
       Authorization: 'Bearer ' + token
     },
