@@ -16,12 +16,13 @@ const uploadMedia = async (domain: string, token: string, formData: FormData, fi
   const response = await fetch(URL, {
     method: 'POST',
     headers: {
-      'Content-Type': 'multipart/form-data',
+      //'Content-Type': 'multipart/form-data',
       //'Content-Type': 'application/json',
       Authorization: 'Bearer ' + token
     },
     body: formData
   })
+  console.log('response', response)
   if (response.ok) {
     const data = await response.json()
     const posts = data // El token JWT

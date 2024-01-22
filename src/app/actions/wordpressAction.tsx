@@ -99,12 +99,13 @@ export default async function wordpressAction(
   for (let i = 0; i < ficheros.length; i++) {
     //ficheros.forEach(async (f, i) => {
     const f = ficheros[i]
+    const media = await uploadMedia(domain, token.jwt_token, new FormData(), f)
+    console.log('media:', media)
     if (f.type.startsWith('image') && mediaId === null) {
-      const media = await uploadMedia(domain, token.jwt_token, new FormData(), f)
-      mediaId = media.id
+      mediaId = media?.id
       //console.log('ponemso imagen portada:', media.id)
     } else {
-      const media = await uploadMedia(domain, token.jwt_token, new FormData(), f)
+      //const media = await uploadMedia(domain, token.jwt_token, new FormData(), f)
       if (f.type === 'application/pdf') {
         content += `<br> <div style="width:100%"> <iframe src="${media.source_url}" width="100%" height="600px"></iframe> </div>`
         content += `<br> <a href="${media.source_url}" target="_blank">Descargar PDF</a>`
@@ -125,7 +126,7 @@ export default async function wordpressAction(
     language: 'es',
     imageId: mediaId
   })
-  /*
+
   if (category !== 'annualAccounts') {
     const secondPost = await createPosts(domain, token.jwt_token, {
       title: titleGL,
@@ -143,7 +144,7 @@ export default async function wordpressAction(
       imageId: mediaId
     })
   }
-*/
+
   return {
     message: 'Entrada creada correctamente'
   }
